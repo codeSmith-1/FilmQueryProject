@@ -73,6 +73,7 @@ public class FilmQueryApp {
 		Film result = db.findFilmById(filmId);
 		if (result != null) {
 			System.out.println(result);
+			subMenu(result);
 		} else {
 			System.out.println("No match found.");
 		}
@@ -82,12 +83,15 @@ public class FilmQueryApp {
 		System.out.println("Type in a keyword to search films:");
 		String filmKey = input.next();
 		List<Film> result = db.findFilmByKey(filmKey);
-		if (filmKey == null) {
-			System.out.println("Surprisingly, there is no match for the keyword.");
+
+		if (result.size() == 0) {
+			System.out.println("No films match the keywords.");
 		} else {
 			for (Film film : result) {
 				System.out.println(film);
+				System.out.println();
 			}
+			System.out.println("Here are " + result.size() + " films related to the keywords.");
 		}
 	}
 
@@ -97,9 +101,20 @@ public class FilmQueryApp {
 		System.out.println("2 - Look up a film by a search keyword");
 		System.out.println("3 - Exit the application");
 	}
-	private void subMenu() {
-		System.out.println("Select an option:");
-		System.out.println("1 - Return to the main menu");
-		System.out.println("2 - View all film details");
+
+	private void subMenu(Film film) {
+		System.out.println("\nSelect an option:");
+		System.out.println("1 - View all film details");
+		System.out.println("2 - Return to the main menu");
+		Scanner kb = new Scanner(System.in);
+		int userInput = kb.nextInt();
+		switch (userInput) {
+		case 1:
+			System.out.println(film.printDetailsString());
+			break;
+		case 2:
+			System.out.println("Returning to main menu...");
+			break;
+		}
 	}
 }

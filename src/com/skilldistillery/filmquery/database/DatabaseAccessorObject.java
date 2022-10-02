@@ -69,7 +69,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Actor findActorById(int actorId) throws SQLException {
+	public Actor findActorById(int actorId) {
 		Actor actor = null;
 		String user = "student";
 		String pass = "student";
@@ -147,7 +147,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-				
 				Film film = new Film();
 				film.setId(rs.getInt("id"));
 				film.setTitle(rs.getString("title"));
