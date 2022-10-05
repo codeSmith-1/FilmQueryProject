@@ -3,17 +3,17 @@ package com.skilldistillery.filmquery.entities;
 import java.util.Objects;
 
 public class Actor {
-	int id;
-	String firstName;
-	String lastName;
+	private int id;
+	private String firstName;
+	private String lastName;
 
 	public Actor() {
 	}
 	
 	public Actor(int id, String first, String last) {
 		this.id = id;
-		first = firstName;
-		last = lastName;
+		firstName = first;
+		lastName = last;
 	}
 
 	@Override

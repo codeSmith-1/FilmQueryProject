@@ -32,9 +32,13 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Film film = null;
 		String user = "student";
 		String pass = "student";
-		String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration, "
-				+ "rental_rate, length, replacement_cost, rating, special_features, language.name "
-				+ "FROM film JOIN language ON language.id = film.language_id WHERE film.id = ?";
+		String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration, rental_rate, \n"
+				+ "length, replacement_cost, rating, special_features, language.name, category.name\n"
+				+ "FROM film\n"
+				+ "JOIN language ON language.id = film.language_id\n"
+				+ "JOIN film_category ON film_category.film_id = film.id\n"
+				+ "JOIN category ON category.id = film_category.category_id\n"
+				+ "WHERE film.id = ?";
 
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
@@ -56,6 +60,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setRating(rs.getString("rating"));
 				film.setName(rs.getString("language.name"));
 				film.setSpecialFeatures(rs.getString("special_features"));
+				film.setCategory(rs.getString("category.name"));
 				film.setActorsInFilm(findActorsByFilmId(rs.getInt("id")));
 
 			}

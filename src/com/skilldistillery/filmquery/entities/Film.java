@@ -17,13 +17,14 @@ public class Film {
 	private String specialFeatures;
 	private List<Actor> actorsInFilm;
 	private String name;
+	private String category;
 
 	public Film() {
 	}
 
 	public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
-			List<Actor> actorsInFilm, String name) {
+			List<Actor> actorsInFilm, String name, String category) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -38,12 +39,13 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 		this.actorsInFilm = actorsInFilm;
 		this.name = name;
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
 		return "Film Title: " + title + "\nDescription: " + description + "\nRelease Year: " + releaseYear
-				+ "\nLanguage: " + name + "\nRating: " + rating + "\nStarring: " + actorsInFilm + "\nFilm id: " + id;
+				+ "\nLanguage: " + name + "\nRating: " + rating + "\nStarring: " + actorsInFilm + "\nCategory: " + category + "\nFilm id: " + id;
 	}
 
 	public String printDetailsString() {
@@ -51,7 +53,7 @@ public class Film {
 				+ releaseYear + ", language Id: " + languageId + ", Rental Duration: " + rentalDuration
 				+ ", Rental Rate: " + rentalRate + ", length: " + length + ", replacement Cost:" + replacementCost
 				+ ", Language: " + name + ", \nrating: " + rating + ", Special Features: " + specialFeatures
-				+ ", \nActors: " + actorsInFilm;
+				+ ", \nCategory: " + category + ", \nActors: " + actorsInFilm;
 	}
 
 	@Override
@@ -76,6 +78,14 @@ public class Film {
 				&& Double.doubleToLongBits(rentalRate) == Double.doubleToLongBits(other.rentalRate)
 				&& Double.doubleToLongBits(replacementCost) == Double.doubleToLongBits(other.replacementCost)
 				&& Objects.equals(specialFeatures, other.specialFeatures) && Objects.equals(title, other.title);
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public List<Actor> getActorsInFilm() {
